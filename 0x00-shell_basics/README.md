@@ -1,1 +1,1 @@
-Make betty the superuser
+My name is Betty
