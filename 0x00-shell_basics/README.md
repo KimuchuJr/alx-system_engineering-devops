@@ -1,1 +1,1 @@
-Listing contents of current directory
+Changing current user to home
