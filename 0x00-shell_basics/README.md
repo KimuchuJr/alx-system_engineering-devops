@@ -1,1 +1,1 @@
-Listing current groups of the user
+a script that prints the absolute path name of the current working directory
