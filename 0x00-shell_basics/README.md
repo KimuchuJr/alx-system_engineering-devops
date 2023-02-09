@@ -1,1 +1,1 @@
-My name is Betty
+Listing current groups of the user
