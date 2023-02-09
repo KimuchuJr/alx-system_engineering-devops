@@ -1,1 +1,1 @@
-This is about shell basics
+Deleting first directory
