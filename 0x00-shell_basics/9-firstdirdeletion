@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -r my_first_directory/tmp\n
+rm -r my_first_directory/tmp: cannot open 'my_first_directory/tmp'(No such file or directory)\n
