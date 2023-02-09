@@ -1,2 +1,2 @@
 #!/bin/bash
-suchown\
+su betty\n
