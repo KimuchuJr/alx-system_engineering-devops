@@ -1,1 +1,1 @@
-Changing current user to home
+Listing files in long format
