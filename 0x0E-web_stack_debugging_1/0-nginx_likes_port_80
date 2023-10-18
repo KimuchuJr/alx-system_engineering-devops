@@ -1,5 +1,36 @@
 #!/usr/bin/env bash
-# A script to fix an Nginx server to listen to port 80
+# A script to configure Nginx to listen on port 80 for all active IPv4 IPs
 
-sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-sudo service nginx start
+# Check if Nginx is installed
+if ! command -v nginx &> /dev/null; then
+    echo "Nginx is not installed. Please install Nginx first."
+    exit 1
+fi
+
+# Get a list of active IPv4 addresses on the server
+active_ips=$(ip -4 addr show | grep "inet " | awk '{print $2}' | cut -d'/' -f1)
+
+# Ensure Nginx listens on port 80 for all active IPv4 addresses
+for ip in $active_ips; do
+    # Check if the Nginx configuration for this IP already exists
+    if [ ! -f "/etc/nginx/sites-available/$ip" ]; then
+        # Create a new Nginx configuration file for the IP
+        cat > "/etc/nginx/sites-available/$ip" <<EOL
+server {
+    listen $ip:80;
+    server_name _;
+
+    location / {
+        # Your server configuration here
+    }
+}
+EOL
+        # Create a symbolic link to enable the site
+        sudo ln -s "/etc/nginx/sites-available/$ip" "/etc/nginx/sites-enabled/$ip"
+    fi
+done
+
+# Restart Nginx to apply the configuration changes
+sudo service nginx restart
+
+echo "Nginx has been configured to listen on port 80 for all active IPv4 addresses."
