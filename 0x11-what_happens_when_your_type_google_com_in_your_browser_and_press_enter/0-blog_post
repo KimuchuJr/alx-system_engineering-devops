@@ -1,0 +1,19 @@
+What happens when you type google.com in your browser and press "ENTER"
+
+Accessing the Google search page involves a series of key steps;
+
+Firstly, when you enter "google.com" into your browser, it initiates a DNS request. This request functions like seeking a friend's house address; the DNS provides the IP address of Google, pinpointing its location on the internet.
+Once the IP address is obtained, your browser utilizes the Internet Protocol (TCP/IP) to establish a secure connection to Google. This step is akin to ensuring a strong internet connection before communication begins.
+
+Security measures are critical in this process. A firewall acts as a digital security guard, scrutinizing the connection to confirm its safety before granting access. This is analogous to a security check at a party's entrance.
+To maintain privacy during your interaction with Google, your browser and the search engine perform a secret handshake using SSL/TLS. This ensures that your conversations and data remain private and secure.
+
+With Google being a popular destination, a load balancer serves as a friendly traffic cop, managing the influx of visitors to ensure a smooth experience for everyone.
+Once inside Google's digital premises, your browser requests the "menu," which includes the webpage content, comprising text, images, and links. This menu is prepared by a chef known as the web server. For specialized requests, like searching for specific content such as "cute puppies," an application server plays the role of a special chef, finding the requested content tailored to your needs.
+
+For content retrieval, the application server may need to search a vast database, akin to a giant book containing information about various web pages and images.
+
+Finally, the web server compiles the requested content onto a "tray" and hands it over to your browser as a response. This can be likened to a waiter serving your food at a restaurant.
+
+Your browser then takes the "tray" of content and assembles it, akin to solving a puzzle. It ensures that all elements, including text, images, and links, are placed correctly. As a result, you see the Google search page displayed on your screen.
+
