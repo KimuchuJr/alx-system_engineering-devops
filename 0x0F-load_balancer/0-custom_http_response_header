@@ -1,15 +1,24 @@
-#!/usr/bin/env bash
-# Configure the Nginx server so that /redirect_me is redirecting to another page. The redirection must be a '301 Moved Permanently'
+#!/usr/bin/env bash                                
+# configure web-02 to be identical to web-01       
 
-sudo apt update -y
-sudo apt install -y nginx
-sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+apt-get update                                    
+apt-get -y install nginx                          
 
-new_header="\n\tadd_header X-Served-By \$hostname;"
-redirect="server_name _;\n\trewrite ^\/redirect_me google.com permanent;"
-not_found="\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}"
-sudo sed -i "s/server_name _;/$redirect$new_header$not_found/" /etc/nginx/sites-enabled/default
+file=~/bre_conf
+defConf=/etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+echo "server {
+              add_header X-Served-By $HOSTNAME;
+ 			  listen 80 default_server;
+ 			  listen [::]:80 default_server;
+ 			  root /var/www/html;
+ 			  index index.html index.htm index.nginx-debian.html;
+			  server_name _;
+  			  location /redirect_me {
+  			    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+ 			 }
+              error_page 404 /404.html;
+	  }" | tee "$file";
 
-sudo service nginx restart
+sudo cp "$file" "$defConf"
+sudo service nginx restart;
