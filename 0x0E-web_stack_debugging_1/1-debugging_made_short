@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# A script to fix an Nginx server to listen to port 80
-sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-sudo service nginx restart
-sudo nginx -s quit
+# Debugging Nginx installation from listening on port 80
+apt-get update && apt-get -y install nginx
+sudo rm /etc/nginx/sites-enabled/default && sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default 
+sudo service nginx restart && sudo /usr/sbin/nginx -s stop
